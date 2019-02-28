@@ -1,0 +1,13 @@
+<h1>Registration</h1>
+<form action="{{ url_register }}" method="post">
+  <p>Email</p>
+  {{ form.email }}
+  <p>Password</p>
+  {{ form.password }}
+  <p>Name</p>
+  {{ form.name }}
+  {{ form.hidden_tag() }}
+  <br>
+  <br>
+  <input type="submit" value="Submit">
+</form>

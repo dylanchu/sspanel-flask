@@ -1,0 +1,24 @@
+[[source]]
+url = "http://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = false
+name = "pypi"
+
+[packages]
+click = "*"
+flask = "*"
+itsdangerous = "*"
+"Jinja2" = "*"
+MarkupSafe = "*"
+Werkzeug = "*"
+flask-login = "*"
+flask-logger = "*"
+redis = "*"
+flask-session = "*"
+flask-wtf = "*"
+flask-mongoengine = "*"
+flask-script = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
