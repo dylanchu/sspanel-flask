@@ -8,7 +8,9 @@ from flask_login import login_user, logout_user, login_required, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
-from app.models import User, Role
+
+from app import db
+from app.models import User
 from app.utils import is_local_url
 
 from . import auth
@@ -35,9 +37,9 @@ def register():
             user.email = form.email.data
             user.password = current_app.md5_hash(form.password.data)
             user.name = form.name.data
-            default_role = Role.objects(name='default').first()
-            user.role = default_role
-            user.save()
+            # todo: allocate ss_port and ss_pwd for new user!
+            db.session.add(user)  # before above todo is solved, this will surely fail
+            db.session.commit()
             login_user(user)
             return redirect(url_for('auth.dashboard'))
         else:

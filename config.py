@@ -46,3 +46,10 @@ class DevelopmentConfig(BaseConfig):
     # SESSION_TYPE = 'redis'  # null(采用flask默认的保存在cookie中) / redis / memcached / ..
     # SESSION_REDIS = Redis(host='127.0.0.1', port=6379, db=0, password=None)
     # SESSION_KEY_PREFIX = 'flask_session:'  # session的redis等键名前缀,默认为'session:'
+
+    # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@hostname/database'
+    SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test'
+
+
+class SsConfig(object):
+    SS_DEFAULT_TRAFFIC = 100  # 单位：MB

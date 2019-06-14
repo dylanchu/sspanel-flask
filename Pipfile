@@ -15,8 +15,9 @@ flask-logger = "*"
 redis = "*"
 flask-session = "*"
 flask-wtf = "*"
-flask-mongoengine = "*"
+flask-sqlalchemy = "*"
 flask-script = "*"
+flask-mysqldb = "*"
 
 [dev-packages]
 

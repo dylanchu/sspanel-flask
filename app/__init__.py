@@ -6,10 +6,10 @@
 from config import DevelopmentConfig
 from flask import Flask
 from flask_login import LoginManager
-from flask_mongoengine import MongoEngine
+from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 
-db = MongoEngine()
+db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'  # 访问需要已登录才能访问的地址时，调用的 登录页面函数 或 其他任何函数
