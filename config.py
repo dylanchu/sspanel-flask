@@ -50,7 +50,8 @@ class DevelopmentConfig(BaseConfig):
     # SESSION_KEY_PREFIX = 'flask_session:'  # session的redis等键名前缀,默认为'session:'
 
     # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@hostname/database'
-    SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test'
+    # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test'
+    SQLALCHEMY_DATABASE_URI = os.environ['SQLALCHEMY_DATABASE_URI']
 
 
 class SsConfig(object):
