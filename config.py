@@ -11,7 +11,9 @@ class BaseConfig(object):
     SECRET_KEY = 'dL28o(19xi54h2?3BX90k92R'  # 为安全推荐从环境变量获取
 
     # session
-    SESSION_TYPE = 'null'  # null(采用flask默认的保存在cookie中),可为redis/memcached等
+    SESSION_TYPE = 'filesystem'  # filesystem(采用flask默认的保存在cookie中),可为redis/memcached等
+    # SESSION_TYPE为null时会导致exception
+    # https://stackoverflow.com/questions/26080872/secret-key-not-set-in-flask-session-using-the-flask-session-extension
     SESSION_USE_SIGNER = True  # 是否强制加盐混淆session
     SESSION_PERMANENT = True  # 是否长期有效，false则关闭浏览器失效
     PERMANENT_SESSION_LIFETIME = 7200  # 重要,session有效期(秒),默认永久有效
