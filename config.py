@@ -4,6 +4,7 @@
 # Created by dylanchu on 19-2-15
 
 import hashlib
+import os
 
 
 class BaseConfig(object):
@@ -39,8 +40,6 @@ class BaseConfig(object):
 
 
 class DevelopmentConfig(BaseConfig):
-    import os
-    SECRET_KEY = os.urandom(24)  # 设为24位的随机字符,重启服务器则上次session清除
     WTF_CSRF_ENABLED = False  # 是否开启flask-wtf的csrf保护,默认是True,用postman提交表单测试需要设为False
 
     SESSION_USE_SIGNER = False
@@ -49,10 +48,10 @@ class DevelopmentConfig(BaseConfig):
     # SESSION_REDIS = Redis(host='127.0.0.1', port=6379, db=0, password=None)
     # SESSION_KEY_PREFIX = 'flask_session:'  # session的redis等键名前缀,默认为'session:'
 
-    # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@hostname/database'
-    # SQLALCHEMY_DATABASE_URI = 'mysql://username:password@localhost/test'
-    SQLALCHEMY_DATABASE_URI = os.environ['SQLALCHEMY_DATABASE_URI']
+    # these data should be defined in the .env file
+    SECRET_KEY = eval(os.getenv('SECRET_KEY'))
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 
 class SsConfig(object):
-    SS_DEFAULT_TRAFFIC = 100  # 单位：MB
+    SS_DEFAULT_TRAFFIC = eval(os.getenv('SS_DEFAULT_TRAFFIC', '100'))  # 单位：MB

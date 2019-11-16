@@ -18,6 +18,7 @@ flask-wtf = "*"
 flask-sqlalchemy = "*"
 flask-script = "*"
 flask-mysqldb = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
