@@ -4,9 +4,10 @@
 # Created by dylanchu on 19-2-22
 
 from . import main
+from flask import current_app
 
 
 @main.route('/')
 @main.route('/index')
 def index():
-    return 'index page'
+    return current_app.send_static_file('index.html')

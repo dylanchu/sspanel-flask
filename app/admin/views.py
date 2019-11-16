@@ -4,50 +4,78 @@
 # Created by dylanchu on 19-2-28
 
 from . import admin
+from flask import jsonify
 from flask_login import login_required
-from app import db
+from app import db, errors
 from app.models import User
+from app.utils import admin_required
 
 
 @admin.route('/')
 @login_required
+@admin_required
 def index():
-    return 'admin homepage'
+    return jsonify(errors.success({
+        'data': 'admin homepage'
+    }))
 
 
 @admin.route('/db_test/c')
+@login_required
+@admin_required
 def db_test_create():
     user = User(name='aaa', email='aaa@site.com', password='888888', ss_port='8081', ss_pwd='123456')
     try:
         db.session.add(user)
         db.session.commit()
     except Exception as e:
-        return str(e)
-    return 'ok' + str(user.__dict__)
+        return jsonify(errors.exception({
+            'data': str(e)
+        }))
+    return jsonify(errors.success({
+        'name': user.name,
+        'email': user.email,
+        'ss_port': user.ss_port
+    }))
 
 
 @admin.route('/db_test/r')
-def db_test_retrieve():
+@login_required
+@admin_required
+def db_test_retrieve_using_email():  # 检索
     user1 = User.query.filter_by(email='aaa@site.com').first()
     # user1 = User.query.filter(User.email == 'aaa@site.com').first()  也可以
     if user1:
-        return str(user1.__dict__)
+        return jsonify(errors.success({
+            'name': user1.name,
+            'email': user1.email,
+            'ss_port': user1.ss_port
+        }))
     else:
-        return 'not found'
+        return jsonify(errors.User_not_exist)
 
 
 @admin.route('/db_test/u')
-def db_test_update():
+@login_required
+@admin_required
+def db_test_update_using_email():
     user1 = User.query.filter_by(email='aaa@site.com').first()
-    user1.name = 'A New Name'
-    db.session.commit()
-    return db_test_retrieve()
+    if user1:
+        user1.name = 'A New Name'
+        db.session.commit()
+    else:
+        return jsonify(errors.User_not_exist)
+    return db_test_retrieve_using_email()
 
 
 @admin.route('/db_test/delete')
-def db_test_delete():
+@login_required
+@admin_required
+def db_test_delete_using_email():
     user1 = User.query.filter_by(email='aaa@site.com').first()
     if user1:
         db.session.delete(user1)
-    db.session.commit()
-    return 'ok<br>query again:' + db_test_retrieve()
+        db.session.commit()
+    return jsonify(errors.success({
+        'data': '删除成功，请再次查询验证'
+    }))
