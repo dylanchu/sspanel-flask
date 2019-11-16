@@ -10,7 +10,7 @@ from config import SsConfig
 
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'user_copy'
+    __tablename__ = 'user'
     __table_args__ = {'useexisting': True}
     note = db.Column(db.String(256), nullable=True, default=None)
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

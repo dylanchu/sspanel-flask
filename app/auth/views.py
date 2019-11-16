@@ -31,7 +31,7 @@ class LoginForm(FlaskForm):
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        existing_user = User.objects(email=form.email.data).first()
+        existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user is None:
             user = User()
             user.email = form.email.data
@@ -54,9 +54,9 @@ def login():
         return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
-        check_user = User.objects(email=form.email.data).first()
+        check_user = User.query.filter_by(email=form.email.data).first()
         if check_user:
-            if check_user['password'] == current_app.md5_hash(form.password.data):
+            if check_user.password == current_app.md5_hash(form.password.data):
                 login_user(check_user)
                 if is_local_url(request.args.get('next')):
                     return redirect(request.args.get('next'))
