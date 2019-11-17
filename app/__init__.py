@@ -14,7 +14,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 # login_manager.login_view = 'auth.login'  # 访问需要已登录才能访问的地址时，调用的 登录页面函数
-login_manager.unauthorized = lambda: jsonify(errors.Authorize_needed)  # 重写需要登录的处理函数
+login_manager.unauthorized = lambda: jsonify(errors.Unauthorized)  # 重写需要登录的处理函数
 
 
 def create_app():

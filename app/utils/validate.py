@@ -16,7 +16,7 @@ def admin_login_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
         if current_user.level < 90:
-            return jsonify(errors.Unauthorized)
+            return jsonify(errors.Forbidden)
         return func(*args, **kwargs)
     return decorated_view
 

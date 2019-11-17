@@ -51,6 +51,14 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return "{id:%s, email:%s, name:%s}" % (self.id, self.email, self.name)
 
+    def to_dict(self):
+        dct = {}
+        for k, v in vars(self).items():
+            dct[k] = v
+        dct.pop('_sa_instance_state')
+        dct.pop('password')
+        return dct
+
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -72,17 +72,15 @@ def redirect(next_url):
     return d
 
 
-Params_error = {'code': 4000, 'msg': '请求参数错误'}
+Bad_request = {'code': 4000, 'msg': '请求参数错误'}
 
-Authorize_needed = {'code': 4300, 'msg': '需要登录'}
-Authorize_failed = {'code': 4301, 'msg': '账号或密码错误'}
-User_not_exist = {'code': 4302, 'msg': '用户不存在'}
-User_already_exist = {'code': 4303, 'msg': '用户已存在'}
-Already_logged_in = {'code': 4304, 'msg': '用户已经登录'}
-Register_not_allowed = {'code': 4305, 'msg': '当前不允许注册'}
-Unauthorized = {'code': 4306, 'msg': '未授权'}
+Unauthorized = {'code': 4010, 'msg': '需要登录'}
+Authorize_failed = {'code': 4011, 'msg': '账号或密码错误'}
+User_not_exist = {'code': 4012, 'msg': '用户不存在'}
+Already_logged_in = {'code': 4013, 'msg': '用户已经登录'}
+Forbidden = {'code': 4030, 'msg': '不具备权限'}
+User_already_exist = {'code': 4033, 'msg': '用户已存在'}
+Register_not_allowed = {'code': 4035, 'msg': '当前不允许注册'}
 Illegal_invitation_code = {'code': 4039, 'msg': '无效的邀请码'}
-Wechat_already_bind = {'code': 4040, 'msg': '该账号已绑定微信，若需重新绑定，请先解绑原微信号'}
-Wechat_not_bind = {'code': 4041, 'msg': '未绑定微信，不需要解绑'}
 
 WIP = {'code': 5104, 'msg': '正在处理'}

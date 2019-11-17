@@ -46,7 +46,7 @@ def register():
             }))
         else:
             return jsonify(errors.User_already_exist)
-    return jsonify(errors.Params_error)
+    return jsonify(errors.Bad_request)
 
 
 @auth.route('/login', methods=['POST'])
