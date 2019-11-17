@@ -3,4 +3,4 @@
 #
 # Created by dylanchu on 19-2-28
 
-from .validate import is_local_url, admin_required
+from .validate import is_local_url, admin_login_required

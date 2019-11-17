@@ -5,15 +5,13 @@
 
 from . import admin
 from flask import jsonify
-from flask_login import login_required
 from app import db, errors
 from app.models import User
-from app.utils import admin_required
+from app.utils import admin_login_required
 
 
 @admin.route('/')
-@login_required
-@admin_required
+@admin_login_required
 def index():
     return jsonify(errors.success({
         'data': 'admin homepage'
@@ -21,8 +19,7 @@ def index():
 
 
 @admin.route('/db_test/c')
-@login_required
-@admin_required
+@admin_login_required
 def db_test_create():
     user = User(name='aaa', email='aaa@site.com', password='888888', ss_port='8081', ss_pwd='123456')
     try:
@@ -40,8 +37,7 @@ def db_test_create():
 
 
 @admin.route('/db_test/r')
-@login_required
-@admin_required
+@admin_login_required
 def db_test_retrieve_using_email():  # 检索
     user1 = User.query.filter_by(email='aaa@site.com').first()
     # user1 = User.query.filter(User.email == 'aaa@site.com').first()  也可以
@@ -56,8 +52,7 @@ def db_test_retrieve_using_email():  # 检索
 
 
 @admin.route('/db_test/u')
-@login_required
-@admin_required
+@admin_login_required
 def db_test_update_using_email():
     user1 = User.query.filter_by(email='aaa@site.com').first()
     if user1:
@@ -69,8 +64,7 @@ def db_test_update_using_email():
 
 
 @admin.route('/db_test/delete')
-@login_required
-@admin_required
+@admin_login_required
 def db_test_delete_using_email():
     user1 = User.query.filter_by(email='aaa@site.com').first()
     if user1:

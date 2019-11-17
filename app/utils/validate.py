@@ -6,12 +6,13 @@
 
 from functools import wraps
 from flask import jsonify
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from app import errors
 
 
-def admin_required(func):
+def admin_login_required(func):
+    @login_required
     @wraps(func)
     def decorated_view(*args, **kwargs):
         if current_user.level < 90:
