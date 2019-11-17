@@ -13,7 +13,7 @@ def success(x=None):
     d = {'code': 0, 'msg': 'success', 'data': {}}
     if x:
         for t in x:
-            if t == 'code' or t == 'msg':
+            if t == 'code' or t == 'msg' or t == 'data':
                 d[t] = x[t]
             else:
                 d['data'][t] = x[t]
@@ -24,7 +24,7 @@ def info(msg, x=None):
     d = {'code': 2, 'msg': msg, 'data': {}}
     if x:
         for t in x:
-            if t == 'code' or t == 'msg':
+            if t == 'code' or t == 'msg' or t == 'data':
                 d[t] = x[t]
             else:
                 d['data'][t] = x[t]
@@ -39,7 +39,7 @@ def error(x=None):
     d = {'code': 1, 'msg': 'error', 'data': {}}
     if x:
         for t in x:
-            if t == 'code' or t == 'msg':
+            if t == 'code' or t == 'msg' or t == 'data':
                 d[t] = x[t]
             else:
                 d['data'][t] = x[t]
@@ -54,7 +54,7 @@ def exception(x=None):
     d = {'code': 1, 'msg': 'exception', 'data': {}}
     if x:
         for t in x:
-            if t == 'code' or t == 'msg':
+            if t == 'code' or t == 'msg' or t == 'data':
                 d[t] = x[t]
             else:
                 d['data'][t] = x[t]
